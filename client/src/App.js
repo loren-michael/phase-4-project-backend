@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import MoviesContainer from './components/MoviesContainer';
+import StoresContainer from './components/StoresContainer';
+import Home from './components/Home'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,12 +20,11 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/testing">
-            <h1>Test route</h1>
-          </Route>
-          <Route path="/">
-            <h1>Page Count: { count }</h1>
-          </Route>
+          <Route path="/signup"><Signup /></Route>
+          <Route path="/login"><Login /></Route>
+          <Route path="/movies"><MoviesContainer /></Route>
+          <Route path="/stores"><StoresContainer /></Route>
+          <Route path="/"><Home /></Route>
         </Switch>
       </div>
     </BrowserRouter>
