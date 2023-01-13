@@ -6,13 +6,13 @@ Store.destroy_all
 User.destroy_all
 
 
-# puts "Creating Users"
+puts "Creating Users"
 
-# u1 = User.create(username: "user1", password: "password")
-# u2 = User.create(username: "user2", password: "password")
-# u3 = User.create(username: "user3", password: "password")
-# u4 = User.create(username: "user4", password: "password")
-# u5 = User.create(username: "user5", password: "password")
+u1 = User.create(username: "user1", password: "password")
+u2 = User.create(username: "user2", password: "password")
+u3 = User.create(username: "user3", password: "password")
+u4 = User.create(username: "user4", password: "password")
+u5 = User.create(username: "user5", password: "password")
 
 
 puts "Locating Stores"
@@ -48,18 +48,18 @@ m20 = Movie.create(store_id: s4.id, title: "The Sandlot", poster_url: "https://w
 
 
 
-# puts "Renting Movies"
+puts "Renting Movies"
 
-# r1 = Rental.create(user_id: u1.id, store_id: s1.id, movie_id: m1.id)
-# r2 = Rental.create(user_id: u1.id, store_id: s1.id, movie_id: m2.id)
-# r3 = Rental.create(user_id: u2.id, store_id: s2.id, movie_id: m6.id)
-# r4 = Rental.create(user_id: u2.id, store_id: s2.id, movie_id: m7.id)
-# r5 = Rental.create(user_id: u3.id, store_id: s2.id, movie_id: m8.id)
-# r6 = Rental.create(user_id: u3.id, store_id: s3.id, movie_id: m12.id)
-# r7 = Rental.create(user_id: u3.id, store_id: s3.id, movie_id: m14.id)
-# r8 = Rental.create(user_id: u4.id, store_id: s4.id, movie_id: m16.id)
-# r9 = Rental.create(user_id: u5.id, store_id: s4.id, movie_id: m17.id)
-# r10 = Rental.create(user_id: u5.id, store_id: s4.id, movie_id: m19.id)
+r1 = Rental.create(user_id: u1.id, store_id: s1.id, movie_id: m1.id)
+r2 = Rental.create(user_id: u1.id, store_id: s1.id, movie_id: m2.id)
+r3 = Rental.create(user_id: u2.id, store_id: s2.id, movie_id: m6.id)
+r4 = Rental.create(user_id: u2.id, store_id: s2.id, movie_id: m7.id)
+r5 = Rental.create(user_id: u3.id, store_id: s2.id, movie_id: m8.id)
+r6 = Rental.create(user_id: u3.id, store_id: s3.id, movie_id: m12.id)
+r7 = Rental.create(user_id: u3.id, store_id: s3.id, movie_id: m14.id)
+r8 = Rental.create(user_id: u4.id, store_id: s4.id, movie_id: m16.id)
+r9 = Rental.create(user_id: u5.id, store_id: s4.id, movie_id: m17.id)
+r10 = Rental.create(user_id: u5.id, store_id: s4.id, movie_id: m19.id)
 
 
 puts "Seeding done!"
