@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-
+  skip_before_action :authorize, only: [:index]
   def index
     render json: Store.all, only: [:id, :address], include: [:movies]
   end
