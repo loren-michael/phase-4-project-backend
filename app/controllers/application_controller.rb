@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
 rescue_from ActiveRecord::RecordInvalid, with: :render_422
-  before_action :authorize
-  # def hello_world
-  #   session[:count] = (session[:count] || 0) + 1
-  #   render json: { count: session[:count] }
-  # end
+  before_action :authorize, except: :hello_world
+
+  def hello_world
+    session[:count] = (session[:count] || 0) + 1
+    render json: { count: session[:count] }
+  end
 
   def logged_in?
     !!session[:user_id]

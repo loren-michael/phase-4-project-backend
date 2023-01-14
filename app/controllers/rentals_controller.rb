@@ -1,5 +1,5 @@
 class RentalsController < ApplicationController
-  before_action :authorize
+  # before_action :authorize
 
   def index
     render json: Rental.all, only: :id, include: [:user, :movie, :store]
