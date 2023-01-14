@@ -13,7 +13,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(()=>{
-    fetch("/me").then(r => {
+    fetch('/me').then(r => {
       if (r.ok) {
         r.json().then(user => setUser(user))
       }
