@@ -13,7 +13,7 @@ function Home({ user, setUser, loggedIn, setLoggedIn }) {
 
   return (
     <div>
-      {user.username}
+      
     </div>
   )
 }

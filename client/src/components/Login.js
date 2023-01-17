@@ -20,7 +20,6 @@ function Login({ user, setUser, loggedIn, setLoggedIn }) {
         r.json().then(user => {
           setUser(user)
           setLoggedIn(true)
-          console.log(user)
         })
       } else {
         r.json().then(data => {

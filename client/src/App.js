@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-// import Signup from './components/Signup';
-// import Login from './components/Login';
 import MoviesContainer from './components/MoviesContainer';
 import StoresContainer from './components/StoresContainer';
-import Home from './components/Home'
+import RentalForm from './components/RentalForm';
+import Home from './components/Home';
 
 function App() {
-  // const [count, setCount] = useState(0);
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [stores, setStores] = useState({});
 
   useEffect(()=>{
     fetch('/me').then(r => {
       if (r.ok) {
         r.json().then(user => setUser(user))
-      }
+          .then(fetch('/stores')
+            .then(r => r.json())
+            .then(stores => setStores(stores))
+      )}
     })
   }, [])
 
@@ -24,10 +26,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar user={user} />
+        <NavBar user={user} setUser={setUser} />
         <Switch>
-          <Route path="/movies"><MoviesContainer /></Route>
-          <Route path="/stores"><StoresContainer /></Route>
+          <Route path="/movies"><MoviesContainer user={user} stores={stores}/></Route>
+          <Route path="/stores"><StoresContainer user={user} stores={stores}/></Route>
+          <Route path="/rent"><RentalForm user={user} /></Route>
           <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} /></Route>
         </Switch>
       </div>
