@@ -1,8 +1,11 @@
 import React from 'react'
+import Movie from './Movie'
 
-function MoviesContainer() {
+function MoviesContainer({ stores }) {
   return (
-    <div>MoviesContainer</div>
+    <ul>
+      
+    </ul>
   )
 }
 
