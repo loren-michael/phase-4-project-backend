@@ -1,11 +1,14 @@
 import React from 'react'
-import Movie from './Movie'
+import MovieCard from './MovieCard'
 
-function MoviesContainer({ stores }) {
+function MoviesContainer({ movies }) {
   return (
     <ul>
-      
+      {movies.map(movie => {
+      return (<MovieCard movie={movie} />)
+    })}
     </ul>
+    
   )
 }
 

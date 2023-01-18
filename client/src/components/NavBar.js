@@ -17,7 +17,7 @@ function NavBar({ user, setUser }) {
         <h2>Welcome back, {user.username}!</h2>
         <NavLink to="/"> Home </NavLink>
         <NavLink to="/rent"> Rentals </NavLink>
-        <NavLink to="/stores"> Stores </NavLink>
+        {/* <NavLink to="/stores"> Stores </NavLink> */}
         <NavLink to="/movies"> Movies </NavLink>
         <Link onClick={handleLogout}> Logout </Link>
       </div>
