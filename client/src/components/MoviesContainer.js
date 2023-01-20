@@ -1,13 +1,14 @@
 import React from 'react'
+import { Card } from 'semantic-ui-react'
 import MovieCard from './MovieCard'
 
 function MoviesContainer({ movies }) {
   return (
-    <ul>
+    <Card.Group>
       {movies.map(movie => {
-      return (<MovieCard movie={movie} />)
+      return (<MovieCard key={movie.id} movie={movie} />)
     })}
-    </ul>
+    </Card.Group>
     
   )
 }

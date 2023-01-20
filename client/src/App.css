@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -28,15 +28,22 @@
   color: #61dafb;
 }
 
-/* .className{
+/* .center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%
+} */
+
+/* .details-poster{
   
 } */
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */

@@ -1,0 +1,29 @@
+.poster-details {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: auto;
+}
+
+.movie-details {
+  padding-left: 20px;
+}
+
+.synopsis {
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.movie-title {
+  text-align: center;
+}
+
+.movie-detail-bar {
+  border-color: black;
+  border-width: 1px;
+  display: flex;
+  justify-content: space-evenly;
+}
