@@ -27,3 +27,11 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.movie-cards {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  padding-left: 50px
+}
