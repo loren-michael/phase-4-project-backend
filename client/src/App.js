@@ -22,12 +22,15 @@ function App() {
         r.json().then(user => setUser(user))
       }
     })
-    .then(fetch('/movies')
-      .then(r => r.json())
-      .then(movies => setMovies(movies))
-      .then(console.log(movies))
-    )
+    .then(fetchMovies())
   }, [])
+
+  function fetchMovies() {
+    fetch('/movies')
+    .then(r => r.json())
+    .then(movies => setMovies(movies))
+    .then(console.log(movies))
+  }
 
 
   return (
@@ -35,7 +38,7 @@ function App() {
       <div className="App">
         <NavBar user={user} setUser={setUser} />
         <Switch>
-          <Route exact path="/movies"><MoviesContainer user={user} movies={movies}/></Route>
+          <Route exact path="/movies"><MoviesContainer fetchMovies={fetchMovies} user={user} movies={movies}/></Route>
           <Route path={"/movies/:id"}><MovieDetails movies={movies} /></Route>
           <Route path="/stores"><StoresContainer user={user}/></Route>
           <Route path="/stores/:id"><Store /></Route>
