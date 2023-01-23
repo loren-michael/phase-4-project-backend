@@ -20,11 +20,13 @@ function App() {
     fetch('/me').then(r => {
       if (r.ok) {
         r.json().then(user => setUser(user))
-          .then(fetch('/movies')
-            .then(r => r.json())
-            .then(movies => setMovies(movies))
-      )}
+      }
     })
+    .then(fetch('/movies')
+      .then(r => r.json())
+      .then(movies => setMovies(movies))
+      .then(console.log(movies))
+    )
   }, [])
 
 

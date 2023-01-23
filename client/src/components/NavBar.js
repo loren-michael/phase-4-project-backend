@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 
 function NavBar({ user, setUser }) {
+  const history = useHistory();
 
   function handleLogout(e) {
     e.preventDefault();
@@ -9,6 +10,7 @@ function NavBar({ user, setUser }) {
       method: "DELETE"
     })
     .then(setUser(null))
+    .then(history.push("/"))
   }
 
   if (user) {
@@ -25,8 +27,10 @@ function NavBar({ user, setUser }) {
   } else {
     return (
       <div>
-        Welcome to Flatiron Movies!<br></br>
+        <h1>Welcome to Flatiron Movies!</h1>
         <Link to="/">Click here to Log In or Sign Up</Link>
+        <br></br>
+        <br></br>
       </div>
     )
   }

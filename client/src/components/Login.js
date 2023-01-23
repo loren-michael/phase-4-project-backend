@@ -32,7 +32,7 @@ function Login({ user, setUser, loggedIn, setLoggedIn }) {
 
   return (
     <div className="login">
-      <h1>Log In</h1>
+      <h2>Log In</h2>
       <form onSubmit={ handleLogin }>
         <div>
           <label htmlFor="username">Username: </label>

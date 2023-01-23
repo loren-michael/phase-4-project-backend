@@ -6,6 +6,9 @@ import { Card, Image } from 'semantic-ui-react'
 import MovieDetails from './MovieDetails'
 
 function Home({ user, setUser, loggedIn, setLoggedIn, movies }) {
+  const movieOne = movies[5];
+  const movieTwo = movies[12];
+  const movieThree = movies[19];
   
   if (!user) return (
       <div className="login-block">
@@ -16,34 +19,36 @@ function Home({ user, setUser, loggedIn, setLoggedIn, movies }) {
 
   return (
     <div>
+      <br></br>
+      <h3>Pick one of these movies or go to the <Link to="/movies">movies page</Link> to see more!</h3>
       <Card.Group>
-        <Card href={`/movies/${movies[5].id}`}>
-          <Link to={`/movies/${movies[5].id}`} element={<MovieDetails movie={movies[5]} />}>
-          <Image src={movies[5].poster_url} />
+        <Card href={`/movies/${movieOne.id}`}>
+          <Link to={`/movies/${movieOne.id}`} element={<MovieDetails movie={movieOne} />}>
+          <Image src={movieOne.poster_url} />
           <Card.Content>
-            <Card.Header>{movies[5].title}</Card.Header>
-            <div>{movies[5].year}</div>
-            <Card.Description>{movies[5].summary}...</Card.Description>
+            <Card.Header>{movieOne.title}</Card.Header>
+            <div>{movieOne.year}</div>
+            <Card.Description>{movieOne.summary}...</Card.Description>
           </Card.Content>
           </Link>
         </Card>
-        <Card href={`/movies/${movies[12].id}`}>
-          <Link to={`/movies/${movies[12].id}`} element={<MovieDetails movie={movies[12]} />}>
-          <Image src={movies[12].poster_url} />
+        <Card href={`/movies/${movieTwo.id}`}>
+          <Link to={`/movies/${movieTwo.id}`} element={<MovieDetails movie={movieTwo} />}>
+          <Image src={movieTwo.poster_url} />
           <Card.Content>
-            <Card.Header>{movies[12].title}</Card.Header>
-            <div>{movies[12].year}</div>
-            <Card.Description>{movies[12].summary}...</Card.Description>
+            <Card.Header>{movieTwo.title}</Card.Header>
+            <div>{movieTwo.year}</div>
+            <Card.Description>{movieTwo.summary}...</Card.Description>
           </Card.Content>
           </Link>
         </Card>
-        <Card href={`/movies/${movies[19].id}`}>
-          <Link to={`/movies/${movies[19].id}`} element={<MovieDetails movie={movies[19]} />}>
-          <Image src={movies[19].poster_url} />
+        <Card href={`/movies/${movieThree.id}`}>
+          <Link to={`/movies/${movieThree.id}`} element={<MovieDetails movie={movieThree} />}>
+          <Image src={movieThree.poster_url} />
           <Card.Content>
-            <Card.Header>{movies[19].title}</Card.Header>
-            <div>{movies[19].year}</div>
-            <Card.Description>{movies[19].summary}...</Card.Description>
+            <Card.Header>{movieThree.title}</Card.Header>
+            <div>{movieThree.year}</div>
+            <Card.Description>{movieThree.summary}...</Card.Description>
           </Card.Content>
           </Link>
         </Card>
