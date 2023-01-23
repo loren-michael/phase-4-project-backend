@@ -8,13 +8,18 @@ function Signup({ user, setUser, loggedIn, setLoggedIn }) {
 
   function handleSignup(e) {
     e.preventDefault();
+    // console.log(username, password, passwordConfirmation)
     fetch('/signup', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify({username, password, passwordConfirmation})
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        password_confirmation: passwordConfirmation
+      })
     })
       .then(r => {
         if (r.ok) {

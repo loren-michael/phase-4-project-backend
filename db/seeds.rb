@@ -8,11 +8,11 @@ User.destroy_all
 
 puts "Creating Users"
 
-u1 = User.create(username: "user1", password: "password")
-u2 = User.create(username: "user2", password: "password")
-u3 = User.create(username: "user3", password: "password")
-u4 = User.create(username: "user4", password: "password")
-u5 = User.create(username: "user5", password: "password")
+u1 = User.create(username: "user1", password: "password", password_confirmation: "password")
+u2 = User.create(username: "user2", password: "password", password_confirmation: "password")
+u3 = User.create(username: "user3", password: "password", password_confirmation: "password")
+u4 = User.create(username: "user4", password: "password", password_confirmation: "password")
+u5 = User.create(username: "user5", password: "password", password_confirmation: "password")
 
 
 puts "Locating Stores"
