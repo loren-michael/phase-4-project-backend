@@ -19,9 +19,11 @@ function MoviesContainer({ movies }) {
       if (movie.availability) {
         availableMovies.push(movie)
       }
+      return availableMovies
     })
     setFilteredMovies(availableMovies)
-  }, [])
+  }, [movies])
+
 
   return (
     <>
@@ -34,9 +36,6 @@ function MoviesContainer({ movies }) {
           return (<MovieCard key={movie.id} movie={movie} />)
         })}
       </Card.Group>
-      {/* <Card.Group className="movie-cards">
-        {filtered ? <div>Available movies</div> : <div>All movies</div>}
-      </Card.Group> */}
     </>
   )
 }

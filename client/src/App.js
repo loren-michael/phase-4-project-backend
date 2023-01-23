@@ -12,8 +12,9 @@ import Home from './components/Home';
 function App() {
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [stores, setStores] = useState({});
-  const [movies, setMovies] = useState([])
+  // const [stores, setStores] = useState([]);
+  const [movies, setMovies] = useState([]);
+  // const [featuredMovies, setFeaturedMovies] = useState([]);
 
   useEffect(()=>{
     fetch('/me').then(r => {
@@ -34,10 +35,10 @@ function App() {
         <Switch>
           <Route exact path="/movies"><MoviesContainer user={user} movies={movies}/></Route>
           <Route path={"/movies/:id"}><MovieDetails movies={movies} /></Route>
-          <Route path="/stores"><StoresContainer user={user} stores={stores}/></Route>
+          <Route path="/stores"><StoresContainer user={user}/></Route>
           <Route path="/stores/:id"><Store /></Route>
           <Route path="/rent"><RentalForm user={user} /></Route>
-          <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} /></Route>
+          <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} movies={movies}/></Route>
         </Switch>
       </div>
     </BrowserRouter>
