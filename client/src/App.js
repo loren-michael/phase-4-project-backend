@@ -14,14 +14,13 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   // const [stores, setStores] = useState([]);
   const [movies, setMovies] = useState([]);
-  // const [featuredMovies, setFeaturedMovies] = useState([]);
   const [rentalMovie, setRentalMovie] = useState({});
+  const [availableMovies, setAvailableMovies] = useState([]);
 
   useEffect(()=>{
     fetch('/me').then(r => {
       if (r.ok) {
         r.json().then(user => setUser(user))
-        .then(console.log(user))
       }
     })
     .then(fetchMovies())
@@ -31,20 +30,28 @@ function App() {
     fetch('/movies')
     .then(r => r.json())
     .then(movies => setMovies(movies))
-    .then(console.log(movies))
   }
 
+  useEffect(() => {
+    const arr = [];
+    movies.map(movie => {
+      if (movie.availability) {
+        arr.push(movie)
+      }
+    })
+    setAvailableMovies(arr)
+  }, [movies])
 
   return (
     <BrowserRouter>
       <div className="App">
         <NavBar user={user} setUser={setUser} />
         <Switch>
-          <Route exact path="/movies"><MoviesContainer fetchMovies={fetchMovies} user={user} movies={movies}/></Route>
+          <Route exact path="/movies"><MoviesContainer fetchMovies={fetchMovies} user={user} movies={movies} availableMovies={availableMovies}/></Route>
           <Route path={"/movies/:id"}><MovieDetails movies={movies} setRentalMovie={setRentalMovie} /></Route>
           <Route path="/stores"><StoresContainer user={user}/></Route>
           <Route path="/stores/:id"><Store /></Route>
-          <Route path="/rent"><RentalForm user={user} movies={movies} /></Route>
+          <Route path="/rent"><RentalForm user={user} movies={movies} availableMovies={availableMovies} rentalMovie={rentalMovie} setRentalMovie={setRentalMovie} /></Route>
           <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} movies={movies} fetchMovies={fetchMovies}/></Route>
         </Switch>
       </div>
