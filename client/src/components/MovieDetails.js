@@ -1,8 +1,9 @@
 import '../styles.css'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 
-function MovieDetails({ movies }) {
+function MovieDetails({ movies, setRentalMovie }) {
+  const history = useHistory();
   const params = useParams();
   const [movie, setMovie] = useState({});
 
@@ -17,6 +18,11 @@ function MovieDetails({ movies }) {
       .then(movie => setMovie(movie))
     }
   },[])
+
+  function handleRentalClick(e) {
+    setRentalMovie(movie)
+    history.push("/rent")
+  }
 
   return (
     <div className="movie-details">
@@ -34,7 +40,8 @@ function MovieDetails({ movies }) {
       <br></br>
       <p className="synopsis">{movie.synopsis}</p>
       <br></br>
-      {movie.availability ? <button>Rent this movie!</button> : <div>Sorry, this movie is not available to rent.</div> }
+      <br></br>
+      {movie.availability ? <button onClick={handleRentalClick}>Rent this movie!</button> : <div>Sorry, this movie is not available to rent.</div> }
     </div>
   )
 }

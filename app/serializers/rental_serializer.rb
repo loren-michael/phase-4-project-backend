@@ -1,3 +1,7 @@
 class RentalSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :movie, :store, :rental_summary
+
+  def rental_summary
+    "Test"
+  end
 end

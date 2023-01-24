@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   
   def index
     movies = Movie.all
-    render json: movies, include: [:store]
+    render json: movies
   end
 
   def create

@@ -17,19 +17,19 @@ function MoviesContainer({ movies, fetchMovies }) {
     filtered ? setDisplayMovies(movies) : setDisplayMovies(filteredMovies)
   }
 
-  useEffect(() => {
-    if (movies.length === 0) {
-      fetchMovies()
-    }
-    const availableMovies = [];
-    movies.map((movie) => {
-      if (movie.availability) {
-        availableMovies.push(movie)
-      }
-      return availableMovies
-    })
-    setFilteredMovies(availableMovies)
-  }, [movies])
+  // useEffect(() => {
+  //   if (movies.length === 0) {
+  //     fetchMovies()
+  //   }
+  //   const availableMovies = [];
+  //   movies.map((movie) => {
+  //     if (movie.availability) {
+  //       availableMovies.push(movie)
+  //     }
+  //     return availableMovies
+  //   })
+  //   setFilteredMovies(availableMovies)
+  // }, [movies])
 
 
   return (

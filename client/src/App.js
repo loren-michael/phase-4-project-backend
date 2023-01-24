@@ -15,6 +15,7 @@ function App() {
   // const [stores, setStores] = useState([]);
   const [movies, setMovies] = useState([]);
   // const [featuredMovies, setFeaturedMovies] = useState([]);
+  const [rentalMovie, setRentalMovie] = useState({});
 
   useEffect(()=>{
     fetch('/me').then(r => {
@@ -40,11 +41,11 @@ function App() {
         <NavBar user={user} setUser={setUser} />
         <Switch>
           <Route exact path="/movies"><MoviesContainer fetchMovies={fetchMovies} user={user} movies={movies}/></Route>
-          <Route path={"/movies/:id"}><MovieDetails movies={movies} /></Route>
+          <Route path={"/movies/:id"}><MovieDetails movies={movies} setRentalMovie={setRentalMovie} /></Route>
           <Route path="/stores"><StoresContainer user={user}/></Route>
           <Route path="/stores/:id"><Store /></Route>
-          <Route path="/rent"><RentalForm user={user} /></Route>
-          <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} movies={movies}/></Route>
+          <Route path="/rent"><RentalForm user={user} movies={movies} /></Route>
+          <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} movies={movies} fetchMovies={fetchMovies}/></Route>
         </Switch>
       </div>
     </BrowserRouter>
