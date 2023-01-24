@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Login({ user, setUser, loggedIn, setLoggedIn }) {
+function Login({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,7 +19,6 @@ function Login({ user, setUser, loggedIn, setLoggedIn }) {
       if (r.ok) {
         r.json().then(user => {
           setUser(user)
-          setLoggedIn(true)
         })
       } else {
         r.json().then(data => {

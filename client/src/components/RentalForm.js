@@ -8,7 +8,7 @@ function RentalForm({ user, rentalMovie, setRentalMovie, movies }) {
   })
 
   function handleReturn(e) {
-    // console.log(e.parentNode.parentNode)
+    
   }
 
   return (
@@ -17,12 +17,14 @@ function RentalForm({ user, rentalMovie, setRentalMovie, movies }) {
       <br></br>
       <h1>Active Rentals</h1>
       <ul>
-        {/* {user.rentals.map(rental => {
-          return(
-            <li>{rental.rental_summary}    <button onClick={handleReturn}> Return Movie </button></li>
-          )
-        })} */}
+
       </ul>
+      <form>
+        <h4>Start a new Rental</h4>
+        <select>
+          <option></option>
+        </select>
+      </form>
     </div>
   )
 }

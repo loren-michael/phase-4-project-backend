@@ -5,7 +5,7 @@ import MovieDetails from './MovieDetails';
 
 function MovieCard({ movie }) {
   return (
-    <Card href={`/movies/${movie.id}`}>
+    <Card color={ movie.availability ? "green" : "red" } href={`/movies/${movie.id}`}>
       <Link to={`/movies/${movie.id}`} element={<MovieDetails movie={movie} />}>
       <Image src={movie.poster_url} />
       <Card.Content>
