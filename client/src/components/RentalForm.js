@@ -12,9 +12,9 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
       .then(rentals => setActiveRentals(rentals))
   }, [user])
 
-  function handleReturn(e) {
-    console.log("return function")
-  }
+  // function handleReturn(e) {
+  //   console.log("return function")
+  // }
 
   return (
     <div>
@@ -35,13 +35,16 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
           required 
           name="rental-movie" 
           value={rentalMovie.movie_id} 
-          onChange={e => setRental({...rental, movie_id: e.target.value})}
+          // onChange={e => setRental({...rental, movie_id: e.target.value})}
+          onChange={console.log(rentalMovie)}
         >
+          
           {availableMovies.map(movie => {
             return <option key={movie.id} value={movie.id}>{movie.title}</option>
           })}
         </select>
       </form>
+      {/* <h4>Begin rental of {rentalMovie.title}</h4> */}
     </div>
   )
 }

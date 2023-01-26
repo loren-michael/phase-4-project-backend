@@ -12,7 +12,7 @@ import Home from './components/Home';
 function App() {
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [stores, setStores] = useState([]);
+  const [stores, setStores] = useState([]);
   const [movies, setMovies] = useState([]);
   const [rentalMovie, setRentalMovie] = useState({});
   const [availableMovies, setAvailableMovies] = useState([]);
@@ -49,7 +49,7 @@ function App() {
         <Switch>
           <Route exact path="/movies"><MoviesContainer fetchMovies={fetchMovies} user={user} movies={movies} availableMovies={availableMovies}/></Route>
           <Route path={"/movies/:id"}><MovieDetails movies={movies} setRentalMovie={setRentalMovie} /></Route>
-          <Route path="/stores"><StoresContainer user={user}/></Route>
+          <Route path="/stores"><StoresContainer user={user} stores={stores} setStores={setStores}/></Route>
           <Route path="/stores/:id"><Store /></Route>
           <Route path="/rent"><RentalForm user={user} movies={movies} availableMovies={availableMovies} rentalMovie={rentalMovie} setRentalMovie={setRentalMovie} /></Route>
           <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} movies={movies} fetchMovies={fetchMovies}/></Route>
