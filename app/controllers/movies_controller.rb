@@ -10,6 +10,12 @@ class MoviesController < ApplicationController
     movie = Movie.create!(movie_params)
   end
 
+  def update
+    find_movie
+    @movie.update(movie_params)
+    render json: @movie, status: :accepted
+  end
+
   def show
     find_movie
     render json: @movie

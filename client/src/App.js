@@ -42,6 +42,28 @@ function App() {
     setAvailableMovies(arr)
   }, [movies])
 
+  const processReturn = () => {
+    fetch('/rentals', {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      body: JSON.stringify({})
+    })
+  }
+
+  const processRental = () => {
+    fetch('/rentals', {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      body: JSON.stringify({})
+    })
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -51,7 +73,7 @@ function App() {
           <Route path={"/movies/:id"}><MovieDetails movies={movies} setRentalMovie={setRentalMovie} /></Route>
           <Route path="/stores"><StoresContainer user={user} stores={stores} setStores={setStores}/></Route>
           <Route path="/stores/:id"><Store /></Route>
-          <Route path="/rent"><RentalForm user={user} movies={movies} availableMovies={availableMovies} rentalMovie={rentalMovie} setRentalMovie={setRentalMovie} /></Route>
+          <Route path="/rent"><RentalForm user={user} movies={movies} availableMovies={availableMovies} rentalMovie={rentalMovie} setRentalMovie={setRentalMovie} processReturn={processReturn} processRental={processRental} /></Route>
           <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} movies={movies} fetchMovies={fetchMovies}/></Route>
         </Switch>
       </div>
