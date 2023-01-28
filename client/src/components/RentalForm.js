@@ -6,18 +6,18 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
     movie_id: rentalMovie.id,
     store_id: rentalMovie.store_id
   })
-  const [returnErrors, setReturnErrors] = useState([])
 
   useEffect(() => {
-    fetch('/rentals')
-      .then(r => r.json())
-      .then(rentals => setActiveRentals(rentals))
+    fetchActiveRentals()
   }, [user])
 
+  function fetchActiveRentals() {
+    fetch('/rentals')
+    .then(r => r.json())
+    .then(rentals => setActiveRentals(rentals))
+  }
+
   function handleReturn(e) {
-    console.log("return function")
-    // change movie availability
-    // patch to /movies/:id and call fetchMovies()
     fetch(`/movies/${e.target.value}`, {
       method: "PATCH",
       headers: {
@@ -35,7 +35,7 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
         "Accept": "application/json"
       }
     }))
-    // console.log(e.target.id)
+    .then(fetchActiveRentals())
   }
 
   function handleChangeRentalMovie(e) {
@@ -51,11 +51,6 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
         {activeRentals.map(rental => {
           return (
             <li key={rental.movie.id}>{rental.movie.title} <button value={rental.movie.id} id={rental.id} onClick={handleReturn}>Return this movie</button></li>
-          )
-        })}
-        {returnErrors.map(error => {
-          return (
-            <li>{error}</li>
           )
         })}
       </ul>

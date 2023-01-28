@@ -18,7 +18,7 @@ class RentalsController < ApplicationController
   def destroy
     find_rental
     @rental.destroy
-    
+    render json: @current_user.rentals.all, include: [:movie, :store]
   end
 
   private
