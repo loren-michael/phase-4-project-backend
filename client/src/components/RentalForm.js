@@ -4,7 +4,7 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
   const [activeRentals, setActiveRentals] = useState([]); 
   const [rental, setRental] = useState({
     movie_id: rentalMovie.id,
-    store_id: rentalMovie.store_id
+    title: rentalMovie.id
   })
 
   useEffect(() => {
@@ -38,9 +38,18 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
     .then(fetchActiveRentals())
   }
 
-  function handleChangeRentalMovie(e) {
-    
+  function handleMovieSelection(e) {
+    const newMovie = movies.find(movie => parseInt(movie.id) === parseInt(e.target.value))
+    setRentalMovie(newMovie)
+    // console.log((newMovie))
   }
+
+  useEffect(() => {
+    setRental({
+      movie_id: rentalMovie.id
+    })
+    console.log("from useeffect", rental)
+  }, [rentalMovie])
 
   return (
     <div>
@@ -60,9 +69,8 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
         <select 
           required 
           name="rental-movie" 
-          value={rentalMovie.movie_id} 
-          // onChange={e => setRental({...rental, movie_id: e.target.value})}
-          onChange={e => handleChangeRentalMovie(e)}
+          value={rentalMovie} 
+          onChange={e => handleMovieSelection(e)}
         >
           <option></option>
           {availableMovies.map(movie => {
@@ -70,7 +78,7 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
           })}
         </select>
       </form>
-      {/* <h4>Begin rental of {rentalMovie.title}</h4> */}
+      <h4>Begin rental of {rentalMovie.title}</h4><button>Activate Rental</button>
     </div>
   )
 }
