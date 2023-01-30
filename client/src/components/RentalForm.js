@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 
 function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie }) {
   const [activeRentals, setActiveRentals] = useState([]); 
-  const [rental, setRental] = useState({
-    movie_id: rentalMovie.id,
-    title: rentalMovie.id
-  })
+  // const [rental, setRental] = useState({
+  //   movie_id: rentalMovie.id,
+  //   title: rentalMovie.id
+  // })
 
   useEffect(() => {
     fetchActiveRentals()
@@ -38,18 +38,18 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
     .then(fetchActiveRentals())
   }
 
-  function handleMovieSelection(e) {
-    const newMovie = movies.find(movie => parseInt(movie.id) === parseInt(e.target.value))
-    setRentalMovie(newMovie)
-    // console.log((newMovie))
-  }
+  // function handleMovieSelection(e) {
+  //   const newMovie = movies.find(movie => parseInt(movie.id) === parseInt(e.target.value))
+  //   setRentalMovie(newMovie)
+  //   // console.log((newMovie))
+  // }
 
-  useEffect(() => {
-    setRental({
-      movie_id: rentalMovie.id
-    })
-    console.log("from useeffect", rental)
-  }, [rentalMovie])
+  // useEffect(() => {
+  //   setRental({
+  //     movie_id: rentalMovie.id
+  //   })
+  //   console.log("from useeffect", rental)
+  // }, [rentalMovie])
 
   return (
     <div>
@@ -64,7 +64,7 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
         })}
       </ul>
       <br></br>
-      <form>
+      {/* <form>
         <h4>Start a new Rental</h4>
         <select 
           required 
@@ -77,7 +77,7 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
             return <option key={movie.id} value={movie.id}>{movie.title}</option>
           })}
         </select>
-      </form>
+      </form> */}
       <h4>Begin rental of {rentalMovie.title}</h4><button>Activate Rental</button>
     </div>
   )
