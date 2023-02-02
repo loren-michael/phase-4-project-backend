@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 
-function NavBar({ user, setUser }) {
+function NavBar({ user, setUser, setRentalMovie }) {
   const history = useHistory();
 
   function handleLogout(e) {
@@ -10,6 +10,7 @@ function NavBar({ user, setUser }) {
       method: "DELETE"
     })
     .then(setUser(null))
+    .then(setRentalMovie({}))
     .then(history.push("/"))
   }
 

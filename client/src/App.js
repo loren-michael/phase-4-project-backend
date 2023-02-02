@@ -67,13 +67,13 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar user={user} setUser={setUser} />
+        <NavBar user={user} setUser={setUser} setRentalMovie={setRentalMovie} />
         <Switch>
           <Route exact path="/movies"><MoviesContainer fetchMovies={fetchMovies} user={user} movies={movies} availableMovies={availableMovies}/></Route>
           <Route path={"/movies/:id"}><MovieDetails movies={movies} setRentalMovie={setRentalMovie} /></Route>
           <Route path="/stores"><StoresContainer user={user} stores={stores} setStores={setStores}/></Route>
           <Route path="/stores/:id"><Store /></Route>
-          <Route path="/rent"><RentalForm user={user} movies={movies} availableMovies={availableMovies} rentalMovie={rentalMovie} setRentalMovie={setRentalMovie}/></Route>
+          <Route path="/rent"><RentalForm user={user} movies={movies} setMovies={setMovies} availableMovies={availableMovies} rentalMovie={rentalMovie} setRentalMovie={setRentalMovie} fetchMovies={fetchMovies}/></Route>
           <Route exact path="/"><Home user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} movies={movies} fetchMovies={fetchMovies}/></Route>
         </Switch>
       </div>

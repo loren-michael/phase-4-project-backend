@@ -19,8 +19,8 @@ function MovieDetails({ movies, setRentalMovie }) {
     }
   },[])
 
-  function handleRentalClick() {
-    setRentalMovie({movie_id: movie.id, title: movie.title})
+  function handleRentalClick(movie) {
+    setRentalMovie(movie)
     history.push("/rent")
   }
 
@@ -41,7 +41,7 @@ function MovieDetails({ movies, setRentalMovie }) {
       <p className="synopsis">{movie.synopsis}</p>
       <br></br>
       <br></br>
-      {movie.availability ? <button value={movie.id} onClick={handleRentalClick}>Rent this movie!</button> : <div>Sorry, this movie is not available to rent.</div> }
+      {movie.availability ? <button value={movie.id} onClick={handleRentalClick(movie)}>Rent this movie!</button> : <div>Sorry, this movie is not available to rent.</div> }
     </div>
   )
 }

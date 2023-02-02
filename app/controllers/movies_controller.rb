@@ -12,7 +12,9 @@ class MoviesController < ApplicationController
 
   def update
     find_movie
-    @movie.update(movie_params)
+    # byebug
+    @movie.update!(availability: params[:availability])
+    # byebug
     render json: @movie, status: :accepted
   end
 

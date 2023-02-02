@@ -35,3 +35,7 @@
   width: 95%;
   padding-left: 50px
 }
+
+.hidden {
+  visibility: hidden;
+}

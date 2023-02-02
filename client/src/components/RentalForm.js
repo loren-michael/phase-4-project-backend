@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import '../styles.css'
 
-function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie }) {
-  const [activeRentals, setActiveRentals] = useState([]); 
-  // const [rental, setRental] = useState({
-  //   movie_id: rentalMovie.id,
-  //   title: rentalMovie.id
-  // })
+function RentalForm({ user, movies, setMovies, availableMovies, rentalMovie, setRentalMovie, fetchMovies }) {
+  const [activeRentals, setActiveRentals] = useState([]);
+  const [errors, setErrors] = useState([]);
+  const [rental, setRental] = useState({
+    movie_id: rentalMovie.id,
+    title: rentalMovie.id
+  })
 
   useEffect(() => {
     fetchActiveRentals()
-  }, [user])
+    setRental({movie_id: rentalMovie.id, title: rentalMovie.title})
+  }, [])
 
   function fetchActiveRentals() {
     fetch('/rentals')
@@ -28,28 +32,102 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
         availability: true
       })
     })
-    .then(fetch(`/rentals/${e.target.id}`, {
+    .then(fetch(`/rentals/${e.target.value}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       }
     }))
+    .then(r => {
+      if (r.ok) {
+        // fetchActiveRentals()
+      } else {
+        r.json().then(data => setErrors(data.errors))
+      }
+    })
     .then(fetchActiveRentals())
   }
 
-  // function handleMovieSelection(e) {
-  //   const newMovie = movies.find(movie => parseInt(movie.id) === parseInt(e.target.value))
-  //   setRentalMovie(newMovie)
-  //   // console.log((newMovie))
+
+  function updateMoviesFalse() {
+    const movieIndex = movies.findIndex(movie => movie.id === rentalMovie.movie_id)
+    console.log(movieIndex)
+    const newMovies = movies
+    newMovies[movieIndex].availability = false
+    console.log(newMovies)
+    setMovies(newMovies)
+  }
+
+  function updateMoviesTrue() {
+    const movieIndex = movies.findIndex(movie => movie.id === rentalMovie.movie_id)
+    console.log(movieIndex)
+    const newMovies = movies
+    newMovies[movieIndex].availability = true
+    console.log(newMovies)
+    setMovies(newMovies)
+  }
+
+
+  function availabilityPatchFalse() {
+    fetch(`/movies/${rental.movie_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({availability: false})
+    }).then(updateMoviesFalse()).then(setRentalMovie({}))
+  }
+
+  function availabilityPatchTrue() {
+    fetch(`/movies/${rental.movie_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({availability: true})
+    }).then(updateMoviesTrue()) 
+  }
+
+  // function handleRentalStart(e) {
+    // fetch(`/rentals`, {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //     "accept": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     movie_id: rentalMovie.movie_id
+    //   })
+    //   })
+    // availabilityPatch()
   // }
 
-  // useEffect(() => {
-  //   setRental({
-  //     movie_id: rentalMovie.id
-  //   })
-  //   console.log("from useeffect", rental)
-  // }, [rentalMovie])
+  function handleRentalStart(e) {
+    fetch('/rentals', {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      body: JSON.stringify(rental)
+    })
+    .then(r => {
+      if (r.ok) {
+        availabilityPatchFalse();
+        fetchActiveRentals();
+      } else {
+        r.json().then(data => setErrors(data.errors))
+      }
+    })
+  }
+
+  // function handleReturn() {
+
+  // }
+
 
   return (
     <div>
@@ -59,7 +137,7 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
       <ul>
         {activeRentals.map(rental => {
           return (
-            <li key={rental.movie.id}>{rental.movie.title} <button value={rental.movie.id} id={rental.id} onClick={handleReturn}>Return this movie</button></li>
+            <li key={rental.movie.id} value={rental.index}> {rental.movie.title} <button value={rental.id} id={rental.id} onClick={handleReturn}>Return this movie</button></li>
           )
         })}
       </ul>
@@ -78,7 +156,14 @@ function RentalForm({ user, movies, availableMovies, rentalMovie, setRentalMovie
           })}
         </select>
       </form> */}
-      <h4>Begin rental of {rentalMovie.title}</h4><button>Activate Rental</button>
+      
+      { rentalMovie.title ? <div><h4>Begin rental of {rentalMovie.title}</h4><button value={rentalMovie.movie_id} onClick={handleRentalStart} >Activate Rental</button></div> : <Link to="/movies">Choose a movie to rent</Link> }
+      
+      {errors.map(err => {
+        return (
+          <li key={err.message}>{err.message}</li>
+        )
+      })}
     </div>
   )
 }
