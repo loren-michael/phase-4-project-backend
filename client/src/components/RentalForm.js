@@ -12,7 +12,7 @@ function RentalForm({ user, movies, setMovies, availableMovies, rentalMovie, set
 
   useEffect(() => {
     fetchActiveRentals()
-    setRental({movie_id: rentalMovie.id, title: rentalMovie.title})
+    // setRental({movie_id: rentalMovie.id, title: rentalMovie.title})
   }, [])
 
   function fetchActiveRentals() {
@@ -21,112 +21,14 @@ function RentalForm({ user, movies, setMovies, availableMovies, rentalMovie, set
     .then(rentals => setActiveRentals(rentals))
   }
 
-  function handleReturn(e) {
-    fetch(`/movies/${e.target.value}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        availability: true
-      })
-    })
-    .then(fetch(`/rentals/${e.target.value}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-    }))
-    .then(r => {
-      if (r.ok) {
-        // fetchActiveRentals()
-      } else {
-        r.json().then(data => setErrors(data.errors))
-      }
-    })
-    .then(fetchActiveRentals())
+  function handleReturn() {
+    console.log("handle return")
   }
 
-
-  function updateMoviesFalse() {
-    const movieIndex = movies.findIndex(movie => movie.id === rentalMovie.movie_id)
-    console.log(movieIndex)
-    const newMovies = movies
-    newMovies[movieIndex].availability = false
-    console.log(newMovies)
-    setMovies(newMovies)
+  function handleRentalStart() {
+    console.log(rentalMovie)
+    console.log("handle rental start")
   }
-
-  function updateMoviesTrue() {
-    const movieIndex = movies.findIndex(movie => movie.id === rentalMovie.movie_id)
-    console.log(movieIndex)
-    const newMovies = movies
-    newMovies[movieIndex].availability = true
-    console.log(newMovies)
-    setMovies(newMovies)
-  }
-
-
-  function availabilityPatchFalse() {
-    fetch(`/movies/${rental.movie_id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({availability: false})
-    }).then(updateMoviesFalse()).then(setRentalMovie({}))
-  }
-
-  function availabilityPatchTrue() {
-    fetch(`/movies/${rental.movie_id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({availability: true})
-    }).then(updateMoviesTrue()) 
-  }
-
-  // function handleRentalStart(e) {
-    // fetch(`/rentals`, {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //     "accept": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     movie_id: rentalMovie.movie_id
-    //   })
-    //   })
-    // availabilityPatch()
-  // }
-
-  function handleRentalStart(e) {
-    fetch('/rentals', {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "accept": "application/json"
-      },
-      body: JSON.stringify(rental)
-    })
-    .then(r => {
-      if (r.ok) {
-        availabilityPatchFalse();
-        fetchActiveRentals();
-      } else {
-        r.json().then(data => setErrors(data.errors))
-      }
-    })
-  }
-
-  // function handleReturn() {
-
-  // }
 
 
   return (

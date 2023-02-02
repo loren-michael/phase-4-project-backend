@@ -33,10 +33,9 @@ function App() {
   }
 
   useEffect(() => {
-    const arr = [];
-    movies.map(movie => {
+    const arr = movies.map(movie => {
       if (movie.availability) {
-        arr.push(movie)
+        return movie
       }
     })
     setAvailableMovies(arr)

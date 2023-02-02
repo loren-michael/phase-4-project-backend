@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Login({ setUser }) {
+function Login({ setUser, setActiveRentals }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -19,6 +19,8 @@ function Login({ setUser }) {
       if (r.ok) {
         r.json().then(user => {
           setUser(user)
+          const userRentals = [user.rentals]
+          setActiveRentals(userRentals)
         })
       } else {
         r.json().then(data => {
