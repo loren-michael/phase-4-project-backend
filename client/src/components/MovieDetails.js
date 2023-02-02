@@ -41,7 +41,7 @@ function MovieDetails({ movies, setRentalMovie }) {
       <p className="synopsis">{movie.synopsis}</p>
       <br></br>
       <br></br>
-      {movie.availability ? <button value={movie.id} onClick={handleRentalClick(movie)}>Rent this movie!</button> : <div>Sorry, this movie is not available to rent.</div> }
+      {movie.availability ? <button value={movie.id} onClick={() => handleRentalClick(movie)}>Rent this movie!</button> : <div>Sorry, this movie is not available to rent.</div> }
     </div>
   )
 }

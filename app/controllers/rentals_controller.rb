@@ -2,7 +2,7 @@ class RentalsController < ApplicationController
   before_action :authorize
 
   def index
-    render json: @current_user.rentals.all # //, include: [:movie, :store]
+    render json: @current_user.rentals.all, include: [:movie]
   end
 
   def show
