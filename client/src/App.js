@@ -11,7 +11,6 @@ import Home from './components/Home';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [stores, setStores] = useState([]);
   const [movies, setMovies] = useState([]);
   const [rentalMovie, setRentalMovie] = useState({});
@@ -33,19 +32,24 @@ function App() {
   }
 
   // useEffect(() => {
-  //   const arr = movies.map(movie => {
-  //     if (movie.availability === true) {
-  //       return movie
-  //     }
+  //   console.log(movies)
+  //   const userRentals = user.rentals
+  //   console.log(userRentals)
+  //   const [userActiveRentals] = userRentals.map(rental => {
+  //     return movies.map(movie => {
+  //       if (movie.id === rental.movie_id) {
+  //         return movie
+  //       }
+  //     })
   //   })
-  //   setAvailableMovies(arr)
-  // }, [movies])
+  //   console.log(userActiveRentals)
+  // }, [user])
 
 
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar user={user} setUser={setUser} setRentalMovie={setRentalMovie} />
+        <NavBar user={user} setUser={setUser} setRentalMovie={setRentalMovie} movies={movies} />
         <Switch>
           <Route exact path="/movies">
             <MoviesContainer 
@@ -86,8 +90,6 @@ function App() {
             <Home 
               user={user} 
               setUser={setUser} 
-              loggedIn={loggedIn} 
-              setLoggedIn={setLoggedIn} 
               movies={movies} 
               fetchMovies={fetchMovies}
             />

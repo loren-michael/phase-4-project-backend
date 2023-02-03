@@ -7,7 +7,7 @@ function Home({ user, setUser, movies, fetchMovies }) {
   
   if (!user) return (
       <div className="login-block">
-        <Login user={user} setUser={setUser} />
+        <Login user={user} setUser={setUser} movies={movies} />
         <Signup user={user} setUser={setUser} />
       </div>
     )
