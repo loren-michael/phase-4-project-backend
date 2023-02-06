@@ -15,6 +15,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [rentalMovie, setRentalMovie] = useState({});
   const [availableMovies, setAvailableMovies] = useState([]);
+  const [activeRentals, setActiveRentals] = useState([])
 
   useEffect(()=>{
     fetch('/me').then(r => {
@@ -30,6 +31,40 @@ function App() {
     .then(r => r.json())
     .then(movies => setMovies(movies))
   }
+
+  // function handleActiveRentalSetup() {
+  //   // const userRentalsArray = user.rentals.map(rental => {
+  //   //   return rental.movie_id
+  //   // })
+  //   // console.log("array", userRentalsArray)
+  //   console.log(user)
+  // }
+
+  // function userSetup(user) {
+  //   setUser(user);
+  //   const userRentals = []
+  //   if (user.rentals.length > 0) {
+  //     user.rentals.forEach(rental => {
+  //       userRentals.push(rental.movie_id)
+  //     })
+  //   }
+  //   const userRentedMovies = [];
+  //   userRentals.forEach(id => {
+  //     movies.map(movie => {
+  //       if (movie.id === id) {
+  //         userRentedMovies.push(movie)
+  //       }
+  //     })
+  //   })
+  //   setActiveRentals(userRentedMovies)
+  // }
+
+  // useEffect(() => {
+  //   const userRentals = [user.rentals]
+  //   userRentals.forEach(rental => {
+  //     console.log(rental.movie_id)
+  //   });
+  // }, [user, movies])
 
   // useEffect(() => {
   //   console.log(movies)
@@ -83,6 +118,8 @@ function App() {
               availableMovies={availableMovies} 
               rentalMovie={rentalMovie} 
               setRentalMovie={setRentalMovie} 
+              activeRentals={activeRentals}
+              setActiveRentals={setActiveRentals}
               fetchMovies={fetchMovies}
             />
           </Route>
