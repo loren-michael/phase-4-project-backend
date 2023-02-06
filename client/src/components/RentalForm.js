@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles.css'
 
-function RentalForm({ user, movies, setMovies, activeRentals, setActiveRentals, rentalMovie, setRentalMovie, fetchMovies }) {
-  // const [activeRentals, setActiveRentals] = useState([]);
+function RentalForm({ movies, setMovies, activeRentals, setActiveRentals, rentalMovie, setRentalMovie }) {
   const [errors, setErrors] = useState([]);
-  const [returnMovie, setReturnMovie] = useState({});
   const [rental, setRental] = useState({
     movie_id: rentalMovie.id,
     title: rentalMovie.id,

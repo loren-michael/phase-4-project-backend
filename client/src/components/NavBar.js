@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 
-function NavBar({ user, setUser, setRentalMovie, movies }) {
+function NavBar({ user, setUser, setRentalMovie }) {
   const history = useHistory();
 
   function handleLogout(e) {

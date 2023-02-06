@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Signup({ user, setUser, loggedIn, setLoggedIn }) {
+function Signup({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -8,7 +8,6 @@ function Signup({ user, setUser, loggedIn, setLoggedIn }) {
 
   function handleSignup(e) {
     e.preventDefault();
-    // console.log(username, password, passwordConfirmation)
     fetch('/signup', {
       method: "POST",
       headers: {
@@ -25,7 +24,6 @@ function Signup({ user, setUser, loggedIn, setLoggedIn }) {
         if (r.ok) {
           r.json().then(user => {
             setUser(user)
-            setLoggedIn(true)
           })
         } else {
           r.json().then(data => {

@@ -19,8 +19,6 @@ function Login({ setUser }) {
       if (r.ok) {
         r.json().then(user => {
           setUser(user)
-          const userRentals = [user.rentals]
-          
         })
       } else {
         r.json().then(data => {

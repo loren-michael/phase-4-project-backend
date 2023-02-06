@@ -14,7 +14,7 @@ function App() {
   const [stores, setStores] = useState([]);
   const [movies, setMovies] = useState([]);
   const [rentalMovie, setRentalMovie] = useState({});
-  const [availableMovies, setAvailableMovies] = useState([]);
+  // const [availableMovies, setAvailableMovies] = useState([]);
   const [activeRentals, setActiveRentals] = useState([])
 
   useEffect(()=>{
@@ -32,54 +32,6 @@ function App() {
     .then(movies => setMovies(movies))
   }
 
-  // function handleActiveRentalSetup() {
-  //   // const userRentalsArray = user.rentals.map(rental => {
-  //   //   return rental.movie_id
-  //   // })
-  //   // console.log("array", userRentalsArray)
-  //   console.log(user)
-  // }
-
-  // function userSetup(user) {
-  //   setUser(user);
-  //   const userRentals = []
-  //   if (user.rentals.length > 0) {
-  //     user.rentals.forEach(rental => {
-  //       userRentals.push(rental.movie_id)
-  //     })
-  //   }
-  //   const userRentedMovies = [];
-  //   userRentals.forEach(id => {
-  //     movies.map(movie => {
-  //       if (movie.id === id) {
-  //         userRentedMovies.push(movie)
-  //       }
-  //     })
-  //   })
-  //   setActiveRentals(userRentedMovies)
-  // }
-
-  // useEffect(() => {
-  //   const userRentals = [user.rentals]
-  //   userRentals.forEach(rental => {
-  //     console.log(rental.movie_id)
-  //   });
-  // }, [user, movies])
-
-  // useEffect(() => {
-  //   console.log(movies)
-  //   const userRentals = user.rentals
-  //   console.log(userRentals)
-  //   const [userActiveRentals] = userRentals.map(rental => {
-  //     return movies.map(movie => {
-  //       if (movie.id === rental.movie_id) {
-  //         return movie
-  //       }
-  //     })
-  //   })
-  //   console.log(userActiveRentals)
-  // }, [user])
-
 
   return (
     <BrowserRouter>
@@ -91,7 +43,7 @@ function App() {
               fetchMovies={fetchMovies} 
               user={user} 
               movies={movies} 
-              availableMovies={availableMovies}
+              // availableMovies={availableMovies}
             />
           </Route>
           <Route path={"/movies/:id"}>
@@ -115,7 +67,7 @@ function App() {
               user={user} 
               movies={movies} 
               setMovies={setMovies} 
-              availableMovies={availableMovies} 
+              // availableMovies={availableMovies} 
               rentalMovie={rentalMovie} 
               setRentalMovie={setRentalMovie} 
               activeRentals={activeRentals}
