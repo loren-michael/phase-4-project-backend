@@ -1,6 +1,7 @@
 import 'semantic-ui-css/semantic.min.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { MoviesContext } from './context/movies'
 import NavBar from './components/NavBar';
 import MoviesContainer from './components/MoviesContainer';
 import MovieDetails from './components/MovieDetails';
@@ -12,10 +13,12 @@ import Home from './components/Home';
 function App() {
   const [user, setUser] = useState(null);
   const [stores, setStores] = useState([]);
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
   const [rentalMovie, setRentalMovie] = useState({});
   // const [availableMovies, setAvailableMovies] = useState([]);
   const [activeRentals, setActiveRentals] = useState([])
+
+  const { movies, setMovies } = useContext(MoviesContext);
 
   useEffect(()=>{
     fetch('/me').then(r => {
@@ -35,6 +38,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    {/* <MoviesProvider> */}
       <div className="App">
         <NavBar user={user} setUser={setUser} setRentalMovie={setRentalMovie} movies={movies} />
         <Switch>
@@ -42,13 +46,13 @@ function App() {
             <MoviesContainer 
               fetchMovies={fetchMovies} 
               user={user} 
-              movies={movies} 
+              // movies={movies} 
               // availableMovies={availableMovies}
             />
           </Route>
           <Route path={"/movies/:id"}>
             <MovieDetails 
-              movies={movies} 
+              // movies={movies} 
               setRentalMovie={setRentalMovie} 
             />
           </Route>
@@ -60,13 +64,13 @@ function App() {
             />
           </Route>
           <Route path={"/stores/:id"}>
-            <Store movies={movies} />
+            <Store />
           </Route>
           <Route path="/rent">
             <RentalForm 
               user={user} 
-              movies={movies} 
-              setMovies={setMovies} 
+              // movies={movies} 
+              // setMovies={setMovies} 
               // availableMovies={availableMovies} 
               rentalMovie={rentalMovie} 
               setRentalMovie={setRentalMovie} 
@@ -79,12 +83,13 @@ function App() {
             <Home 
               user={user} 
               setUser={setUser} 
-              movies={movies} 
+              // movies={movies} 
               fetchMovies={fetchMovies}
             />
           </Route>
         </Switch>
       </div>
+    {/* </MoviesProvider> */}
     </BrowserRouter>
   );
 }
