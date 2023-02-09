@@ -1,3 +1,3 @@
 class StoreSerializer < ActiveModel::Serializer
-  attributes :id, :address
+  attributes :id, :address, :movies
 end

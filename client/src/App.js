@@ -52,15 +52,15 @@ function App() {
               setRentalMovie={setRentalMovie} 
             />
           </Route>
-          <Route path="/stores">
+          <Route exact path="/stores">
             <StoresContainer 
               user={user} 
               stores={stores} 
               setStores={setStores}
             />
           </Route>
-          <Route path="/stores/:id">
-            <Store />
+          <Route path={"/stores/:id"}>
+            <Store movies={movies} />
           </Route>
           <Route path="/rent">
             <RentalForm 
