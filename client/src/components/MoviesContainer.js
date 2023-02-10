@@ -1,9 +1,11 @@
 import '../styles.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Card } from 'semantic-ui-react';
+import { MoviesContext } from '../context/movies'
 import MovieCard from './MovieCard';
 
-function MoviesContainer({ movies }) {
+function MoviesContainer() {
+  const { movies } = useContext(MoviesContext);
 
   return (
     <div>

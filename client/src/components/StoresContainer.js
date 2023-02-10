@@ -7,7 +7,7 @@ function StoresContainer({ stores, setStores, movies }) {
   useEffect(() => {
     fetch('/stores')
     .then(r => r.json())
-    .then(stores => console.log(stores))
+    .then(stores => setStores(stores))
   }, [])
 
   return (
