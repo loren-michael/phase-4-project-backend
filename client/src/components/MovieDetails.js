@@ -1,11 +1,15 @@
 import '../styles.css'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
+import { MoviesContext } from '../context/movies';
 
-function MovieDetails({ movies, setRentalMovie }) {
+function MovieDetails({ setRentalMovie }) {
   const history = useHistory();
   const params = useParams();
   const [movie, setMovie] = useState({});
+
+  const { movies } = useContext(MoviesContext);
+
 
   useEffect(()=>{
     const movieId = parseInt(params.id);

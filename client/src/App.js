@@ -1,7 +1,8 @@
 import 'semantic-ui-css/semantic.min.css';
 import { useState, useEffect, useContext } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { MoviesContext } from './context/movies'
+import { MoviesContext } from './context/movies';
+// import { StoresContext } from './context/stores'; 
 import NavBar from './components/NavBar';
 import MoviesContainer from './components/MoviesContainer';
 import MovieDetails from './components/MovieDetails';
@@ -12,13 +13,15 @@ import Home from './components/Home';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [stores, setStores] = useState([]);
+  const [store, setStore] = useState({})
+  // const [stores, setStores] = useState([]);
   // const [movies, setMovies] = useState([]);
   const [rentalMovie, setRentalMovie] = useState({});
   // const [availableMovies, setAvailableMovies] = useState([]);
   const [activeRentals, setActiveRentals] = useState([])
 
   const { movies, setMovies } = useContext(MoviesContext);
+  // const { stores, setStores } = useContext(StoresContext);
 
   useEffect(()=>{
     fetch('/me').then(r => {
@@ -59,12 +62,14 @@ function App() {
           <Route exact path="/stores">
             <StoresContainer 
               user={user} 
-              stores={stores} 
-              setStores={setStores}
+              store={store}
+              setStore={setStore}
+              // stores={stores} 
+              // setStores={setStores}
             />
           </Route>
           <Route path={"/stores/:id"}>
-            <Store />
+            <Store store={store} setStore={setStore} />
           </Route>
           <Route path="/rent">
             <RentalForm 

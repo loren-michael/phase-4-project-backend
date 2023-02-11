@@ -83,7 +83,7 @@ function RentalForm({ movies, setMovies, activeRentals, setActiveRentals, rental
     setMovies(newRentalMovies)
     const newActiveRentalMovie = {movie: rentalMovie}
     const updatedActiveRentals = [...activeRentals, newActiveRentalMovie]
-    setActiveRentals(updatedActiveRentals)
+    setActiveRentals([...activeRentals, {movie: rentalMovie}])
     setRentalMovie({})
   }
 
