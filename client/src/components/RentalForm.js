@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { MoviesContext } from '../context/movies'
 import '../styles.css'
 
-function RentalForm({ movies, setMovies, activeRentals, setActiveRentals, rentalMovie, setRentalMovie }) {
+function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMovie }) {
+  const { movies, setMovies } = useContext(MoviesContext);
+  
   const [errors, setErrors] = useState([]);
   const [rental, setRental] = useState({
     movie_id: rentalMovie.id,
@@ -62,7 +65,7 @@ function RentalForm({ movies, setMovies, activeRentals, setActiveRentals, rental
     })
     .then(r => {
       if (r.ok) {
-        r.json().then(r => console.log(r)).then(patchMovieAvailability())
+        r.json().then(patchMovieAvailability())
       } else {
         r.json().then(data => setErrors(data.errors))
       }
@@ -83,7 +86,7 @@ function RentalForm({ movies, setMovies, activeRentals, setActiveRentals, rental
     setMovies(newRentalMovies)
     const newActiveRentalMovie = {movie: rentalMovie}
     const updatedActiveRentals = [...activeRentals, newActiveRentalMovie]
-    setActiveRentals([...activeRentals, {movie: rentalMovie}])
+    setActiveRentals(updatedActiveRentals)
     setRentalMovie({})
   }
 
