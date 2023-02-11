@@ -22,7 +22,7 @@ function NavBar({ user, setUser, setRentalMovie }) {
         <NavLink to="/rent"> Rentals </NavLink>
         <NavLink to="/stores"> Stores </NavLink>
         <NavLink to="/movies"> Movies </NavLink>
-        <Link onClick={handleLogout}> Logout </Link>
+        <a href="/" onClick={handleLogout}> Logout </a>
       </div>
     )
   } else {

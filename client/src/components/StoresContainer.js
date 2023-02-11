@@ -1,19 +1,15 @@
 import React, { useEffect, useContext } from 'react';
-// import { Link } from 'react-router-dom';
-// import Store from './Store';
+import { Link } from 'react-router-dom';
 import { StoresContext } from '../context/stores';
 
 function StoresContainer({ store, setStore }) {
   const { stores, setStores } = useContext(StoresContext);
-  // const [store, setStore] = useState({})
-
 
   useEffect(() => {
     fetch('/stores')
     .then(r => r.json())
     .then(stores => setStores(stores))
   }, [])
-
 
   return (
     
@@ -23,8 +19,8 @@ function StoresContainer({ store, setStore }) {
       {stores.map(store => {
         return (
           <li key={store.address}>
-            {/* <Link to={`/stores/${store.id}`} element={<Store store={store} movies={movies} />} key={store.address} onClick={() => setStore(store)} >Store # {store.id} - {store.address}</Link> */}
-            <a href={`/stores/${store.id}`} value={store.id}>Store # {store.id} - {store.address}</a>
+            {/* <a href={`/stores/${store.id}`} value={store.id}>Store # {store.id} - {store.address}</a> */}
+            <Link to={`/stores/${store.id}`} value={store.id}>Store # {store.id} - {store.address}</Link>
           </li>
         )
       })}

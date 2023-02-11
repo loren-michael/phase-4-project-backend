@@ -3,11 +3,11 @@ import Login from './Login'
 import Signup from './Signup'
 import MoviesContainer from './MoviesContainer'
 
-function Home({ user, setUser, movies, fetchMovies }) {
+function Home({ user, setUser, fetchMovies }) {
   
   if (!user) return (
       <div className="login-block">
-        <Login user={user} setUser={setUser} movies={movies} />
+        <Login user={user} setUser={setUser} />
         <Signup user={user} setUser={setUser} />
       </div>
     )
@@ -15,7 +15,7 @@ function Home({ user, setUser, movies, fetchMovies }) {
   return (
     <div>
       <br></br>
-      <MoviesContainer movies={movies} fetchMovies={fetchMovies} />
+      <MoviesContainer fetchMovies={fetchMovies} />
     </div>
   )
 }
