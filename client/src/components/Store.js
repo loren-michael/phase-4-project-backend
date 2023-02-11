@@ -5,15 +5,13 @@ import { Card } from 'semantic-ui-react';
 import { MoviesContext } from '../context/movies'
 import MovieCard from './MovieCard';
 
-function Store({ store }) {
+function Store() {
   const { movies } = useContext(MoviesContext);
   const params = useParams()
   const [storeMovies, setStoreMovies] = useState([])
 
-  // const storeMoviesArr = movies.filter(movie => movie.store_id == params.id)
-
   useEffect(() => {
-    const storeMoviesArr = movies.filter(movie => movie.store_id === params.id)
+    const storeMoviesArr = movies.filter(movie => movie.store_id == params.id)
     setStoreMovies(storeMoviesArr)
   }, [params, movies])
 
