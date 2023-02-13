@@ -6,8 +6,8 @@ class StoresController < ApplicationController
   end
 
   def create
-    store = Store.create!(store_params)
-    render json: store, only: [:id, :address], status: :created
+    Store.create!(store_params)
+    render json: Store.all, only: [:id, :address]
   end
 
   def show
