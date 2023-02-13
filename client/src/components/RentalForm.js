@@ -4,7 +4,7 @@ import { MoviesContext } from '../context/movies'
 import '../styles.css'
 
 function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMovie }) {
-  const { movies, setMovies } = useContext(MoviesContext);
+  const [movies, setMovies] = useContext(MoviesContext);
   
   const [errors, setErrors] = useState([]);
   const [rental, setRental] = useState({
@@ -67,15 +67,17 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
       if (r.ok) {
         r.json().then(patchMovieAvailability())
       } else {
-        r.json().then(data => console.log(data.errors))
+        r.json().then(data => setErrors(data.errors))
       }
     })
   }
 
 
   function patchMovieAvailability() {
-    const updatedAvailability = rentalMovie
-    updatedAvailability.availability = false
+    console.log("availability patch")
+    // console.log(rentalMovie.id)
+    const updatedAvailability = movies.find(movie => movie.id === rentalMovie.id);
+    updatedAvailability.availability = false;
     const newRentalMovies = movies.map(movie => {
       if (movie.id === updatedAvailability.id) {
         return updatedAvailability
@@ -83,11 +85,17 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
         return movie
       }
     })
+    console.log(newRentalMovies)
     setMovies(newRentalMovies)
     const newActiveRentalMovie = {movie: rentalMovie}
     const updatedActiveRentals = [...activeRentals, newActiveRentalMovie]
     setActiveRentals(updatedActiveRentals)
     setRentalMovie({})
+    handleConsoleLogMovies()
+  }
+
+  function handleConsoleLogMovies() {
+    console.log(movies)
   }
 
   function updateMovieAvailabilityTrue(id) {

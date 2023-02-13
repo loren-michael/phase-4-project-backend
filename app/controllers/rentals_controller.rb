@@ -11,7 +11,6 @@ class RentalsController < ApplicationController
   end
 
   def create
-    # verify_availability
     find_movie
     rental = @current_user.rentals.create!(user_id: @current_user.id, movie_id: @movie.id, store_id: @movie.store_id)
     render json: rental, status: :created
@@ -37,8 +36,4 @@ class RentalsController < ApplicationController
       @movie = Movie.find_by(id: params[:movie_id])
     end
 
-    # def verify_availability
-    #   find_movie
-    #   @movie.availability == false ? render json: {error: "Movie not available"}, status: :unprocessable_entity : 
-    # end
 end

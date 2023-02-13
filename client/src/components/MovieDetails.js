@@ -8,7 +8,8 @@ function MovieDetails({ setRentalMovie }) {
   const params = useParams();
   const [movie, setMovie] = useState({});
 
-  const { movies } = useContext(MoviesContext);
+  const [movies, setMovies] = useContext(MoviesContext);
+
 
 
   useEffect(()=>{

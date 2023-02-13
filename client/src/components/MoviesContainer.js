@@ -5,7 +5,8 @@ import { MoviesContext } from '../context/movies'
 import MovieCard from './MovieCard';
 
 function MoviesContainer() {
-  const { movies } = useContext(MoviesContext);
+  const [movies, setMovies] = useContext(MoviesContext);
+  
 
   return (
     <div>

@@ -6,7 +6,8 @@ import { MoviesContext } from '../context/movies'
 import MovieCard from './MovieCard';
 
 function Store() {
-  const { movies } = useContext(MoviesContext);
+  const [movies, setMovies] = useContext(MoviesContext);
+
   const params = useParams()
   const [storeMovies, setStoreMovies] = useState([])
 

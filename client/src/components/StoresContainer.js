@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { StoresContext } from '../context/stores';
 
 function StoresContainer({ store, setStore }) {
-  const { stores, setStores } = useContext(StoresContext);
+  const [stores, setStores] = useContext(StoresContext);
   const [newStore, setNewStore] = useState({address: ""});
   const [errors, setErrors] = useState([])
 

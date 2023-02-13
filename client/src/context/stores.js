@@ -5,8 +5,10 @@ const StoresContext = createContext(null);
 const StoresProvider = ({ children }) => {
   const [stores, setStores] = useState([])
 
+  const value = [stores, setStores]
+
   return (
-    <StoresContext.Provider value={{ stores, setStores }}>
+    <StoresContext.Provider value={value}>
       { children }
     </StoresContext.Provider>)
 }

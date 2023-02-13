@@ -20,7 +20,8 @@ function App() {
   // const [availableMovies, setAvailableMovies] = useState([]);
   const [activeRentals, setActiveRentals] = useState([])
 
-  const { movies, setMovies } = useContext(MoviesContext);
+  const [movies, setMovies] = useContext(MoviesContext);
+
   // const { stores, setStores } = useContext(StoresContext);
 
   useEffect(()=>{
