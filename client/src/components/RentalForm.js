@@ -67,7 +67,7 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
       if (r.ok) {
         r.json().then(patchMovieAvailability())
       } else {
-        r.json().then(data => setErrors(data.errors))
+        r.json().then(data => console.log(data.errors))
       }
     })
   }
@@ -123,7 +123,7 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
       
       {errors.map(err => {
         return (
-          <li key={err.message}>{err.message}</li>
+          <li key={err}>{err}</li>
         )
       })}
     </div>
