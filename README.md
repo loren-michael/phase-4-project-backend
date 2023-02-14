@@ -33,5 +33,5 @@ npm start --prefix client
 ```
 
 
-Read More
-A blog post about the initial development of this application can be found here.
+### Read More
+A blog post about the initial development of this application can be found [here](https://dev.to/lorenmichael/ruby-on-rails-a-simple-movie-rental-application-4djo).
