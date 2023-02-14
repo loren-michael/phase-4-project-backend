@@ -1,4 +1,4 @@
-# Loren's Full Stack Movie Rental App
+# Loren's Full-Stack Movie Rental App
 
 ## Introduction
 
@@ -30,6 +30,14 @@ And start your React server:
 
 ```
 npm start --prefix client
+```
+### Errors
+
+If you have database errors, try these commands to check and restart the server:
+
+```
+service postgresql status
+sudo service postgresql restart
 ```
 
 
