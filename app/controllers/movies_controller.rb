@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
 
   def create
     movie = Movie.create!(movie_params)
+    render json: movie, status: :created
   end
 
   def update

@@ -47,7 +47,7 @@ function StoresContainer({ store, setStore }) {
       })}
       <br></br>
       <form onSubmit={handleNewStore}>
-        <label htmlFor="address">Address of New Store: </label>
+        <label>Address of New Store: </label>
         <input
           type="text"
           value={newStore.address}
