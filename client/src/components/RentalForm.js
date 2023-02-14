@@ -34,8 +34,9 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
   }
 
   function handleReturn(e) {
-    const rentalId = parseInt(e.target.value)
-    fetch(`/rentals/${rentalId}`, {
+    const returnRental = activeRentals.find(rental => rental.id == parseInt(e.target.value))
+    const returnMovie = returnRental.movie
+    fetch(`/rentals/${parseInt(e.target.value)}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -45,13 +46,40 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
     .then(r => {
       if (r.ok) {
         r.json()
-        .then(rentals => setActiveRentals(rentals))
-        .then(updateMovieAvailabilityTrue(rentalId))
+        .then(rentals => setActiveRentals(rentals));
+        updateMovieAvailabilityTrue(returnMovie)
       } else {
         r.json().then(data => setErrors(data.errors))
       }
     })
   }
+
+  function updateMovieAvailabilityTrue(returnMovie) {
+    fetch(`/movies/${returnMovie.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({availability: true})
+    })
+    .then(r => {
+      if (r.ok) {
+        returnMovie.availability = true;
+        const newMovies = movies.map(movie => {
+          if (movie.id === returnMovie.id) {
+            return returnMovie
+          } else {
+            return movie
+          }
+        })
+        setMovies(newMovies)
+      } else {
+        r.json().then(data => setErrors(data.errors))
+      }
+    })
+  }
+
 
 
   function handleRentalStart(e) {
@@ -72,10 +100,15 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
     })
   }
 
-
   function patchMovieAvailability() {
-    console.log("availability patch")
-    // console.log(rentalMovie.id)
+    fetch(`/movies/${rental.movie_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({availability: false})
+    })
     const updatedAvailability = movies.find(movie => movie.id === rentalMovie.id);
     updatedAvailability.availability = false;
     const newRentalMovies = movies.map(movie => {
@@ -85,32 +118,14 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
         return movie
       }
     })
-    console.log(newRentalMovies)
     setMovies(newRentalMovies)
     const newActiveRentalMovie = {movie: rentalMovie}
     const updatedActiveRentals = [...activeRentals, newActiveRentalMovie]
     setActiveRentals(updatedActiveRentals)
     setRentalMovie({})
-    handleConsoleLogMovies()
   }
 
-  function handleConsoleLogMovies() {
-    console.log(movies)
-  }
 
-  function updateMovieAvailabilityTrue(id) {
-    const foundRental = activeRentals.find(rental => rental.id === id)
-    const foundMovie = foundRental.movie
-    foundMovie.availability = true
-    const newMovies = movies.map(movie => {
-      if (movie.id === foundMovie.id) {
-        return foundMovie
-      } else {
-        return movie
-      }
-    })
-    setMovies(newMovies)
-  }
 
 
   return (
