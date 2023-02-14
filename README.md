@@ -1,24 +1,37 @@
-# README
+# Loren's Phase 4 Ruby on Rails with React Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
 
-Things you may want to cover:
+I developed this full stack application to demonstrate knowledge of Ruby on Rails with a React frontend. A user is able to log in and view movies at different stores, rent and return those movies, and add movies to stores to be made available to all users to rent.
 
-* Ruby version
+## Getting Started
 
-* System dependencies
+In order to use this application, you will need to clone the repository onto your machine, navigate into the directory and then do the following:
 
-* Configuration
+```
+$ bundle install
+```
 
-* Database creation
+Once finished installing, you will need to make sure there is data seeded into your database. Do this by executing the following in your console:
 
-* Database initialization
+```
+$ rails db:migrate db:seed
+```
 
-* How to run the test suite
+This will reset any data in the database and make sure you have good data to start with.
 
-* Services (job queues, cache servers, search engines, etc.)
+Then, start up a server to utilize the app:
 
-* Deployment instructions
+```
+rails s
+```
 
-* ...
+And start your React server:
+
+```
+npm start --prefix client
+```
+
+
+Read More
+A blog post about the initial development of this application can be found here.
