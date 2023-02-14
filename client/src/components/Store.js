@@ -42,9 +42,11 @@ function Store() {
     })
     .then(r => {
       if (r.ok) {
-        r.json().then(movie => setMovies([...movies, movie]))
-        .then(e.target.reset())
-        .then(history.push(`/stores/${params.id}`))
+        r.json().then(movie => {
+          setMovies([...movies, movie])
+          history.push(`/movies/${movie.id}`)
+        })
+        .then(handleToggleForm())
       } else {
         r.json().then(data => setErrors(data.errors))
       }
@@ -67,7 +69,7 @@ function Store() {
       <br></br>
       { toggleForm ? <button onClick={handleToggleForm}> Add a movie to this store </button> : 
         <div>
-          <form onSubmit={handleAddMovie}>
+          <form id="new-movie-form" onSubmit={handleAddMovie}>
             <label>Title: </label>
             <input
               type="text"
@@ -131,7 +133,7 @@ function Store() {
         })}
       </ul>
       <br></br>
-          <button onClick={handleToggleForm}> Remove Form </button>
+          <button onClick={handleToggleForm}> Hide Form </button>
         </div>
       }
       <br></br>
