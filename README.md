@@ -1,8 +1,8 @@
-# Loren's Phase 4 Ruby on Rails with React Project
+# Loren's Full Stack Movie Rental App
 
 ## Introduction
 
-I developed this full stack application to demonstrate knowledge of Ruby on Rails with a React frontend. A user is able to log in and view movies at different stores, rent and return those movies, and add movies to stores to be made available to all users to rent.
+I developed this application to demonstrate knowledge of Ruby on Rails with a React frontend. A user is able to securely log in/out, view movies at different stores, rent and return those movies and add movies to stores to be made available to all users to rent.
 
 ## Getting Started
 
