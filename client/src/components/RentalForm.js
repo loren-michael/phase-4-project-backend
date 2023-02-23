@@ -35,6 +35,7 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
 
   function handleReturn(e) {
     const returnRental = activeRentals.find(rental => rental.id == parseInt(e.target.value))
+    console.log(returnRental.movie)
     const returnMovie = returnRental.movie
     fetch(`/rentals/${parseInt(e.target.value)}`, {
       method: "DELETE",

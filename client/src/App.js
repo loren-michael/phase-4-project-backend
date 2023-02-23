@@ -57,6 +57,7 @@ function App() {
           <Route path={"/movies/:id"}>
             <MovieDetails 
               // movies={movies} 
+              user={user}
               setRentalMovie={setRentalMovie} 
             />
           </Route>

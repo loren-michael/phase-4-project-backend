@@ -3,13 +3,14 @@ import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { MoviesContext } from '../context/movies';
 
-function MovieDetails({ setRentalMovie }) {
+function MovieDetails({ setRentalMovie, user }) {
   const history = useHistory();
   const params = useParams();
   const [movie, setMovie] = useState({});
 
   const [movies, setMovies] = useContext(MoviesContext);
 
+  console.log(user)
 
 
   useEffect(()=>{
@@ -46,7 +47,8 @@ function MovieDetails({ setRentalMovie }) {
       <p className="synopsis">{movie.synopsis}</p>
       <br></br>
       <br></br>
-      {movie.availability ? <button value={movie.id} onClick={() => handleRentalClick(movie)}>Rent this movie!</button> : <div>Sorry, this movie is not available to rent.</div> }
+      { user && movie.availability ? <button value={movie.id} onClick={() => handleRentalClick(movie)}>Rent this movie!</button> : <div>Sorry, this movie is not available to rent.</div> }
+      
     </div>
   )
 }
