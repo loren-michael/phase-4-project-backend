@@ -25,12 +25,14 @@ function StoresContainer({ store, setStore }) {
     })
     .then(r => {
       if (r.ok) {
-        r.json().then(data => setStores(data))
+        r.json().then(data => setStores([...stores, data]))
       } else {
         r.json().then(data => setErrors(data.errors))
       }
     })
   }
+
+console.log(stores)
 
   return (
     
