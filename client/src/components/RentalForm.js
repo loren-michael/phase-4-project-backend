@@ -10,7 +10,8 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
   const [rental, setRental] = useState({
     movie_id: rentalMovie.id,
     title: rentalMovie.id,
-    store_id: rentalMovie.store_id
+    store_id: rentalMovie.store_id,
+    price: 0
   })
 
   useEffect(() => {
@@ -84,6 +85,7 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
 
 
   function handleRentalStart(e) {
+    e.preventDefault();
     fetch(`/rentals`, {
       method: "POST",
       headers: {
@@ -127,8 +129,6 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
   }
 
 
-
-
   return (
     <div>
       <br></br>
@@ -137,13 +137,28 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
       <ul>
         {activeRentals.map(rental => {
           return (
-            <li key={rental.movie.id} value={rental.id}> {rental.movie.title} <button value={rental.id} id={rental.id} onClick={e => handleReturn(e)}>Return this movie</button></li>
+            <li key={rental.movie.id} value={rental.id}> {rental.movie.title} rented for {rental.price} <button value={rental.id} id={rental.id} onClick={e => handleReturn(e)}>Return this movie</button></li>
           )
         })}
       </ul>
       <br></br>
       
-      { rentalMovie.title ? <div><h4>Begin rental of {rentalMovie.title}</h4><button value={rentalMovie.movie_id} onClick={e => handleRentalStart(e)} >Activate Rental</button></div> : <Link to="/movies">Choose a movie to rent</Link> }
+      { rentalMovie.title ? 
+        <div>
+          <form>
+            <h4>Begin rental of {rentalMovie.title}</h4>
+            <label>Price:  $</label>
+            <input 
+              type="text" 
+              value={rental.price}
+              onChange={e => setRental({...rental, price: e.target.value})}
+            />
+            <button type="submit" value={rentalMovie.movie_id} onClick={e => handleRentalStart(e)} >Activate Rental</button>
+          </form>
+        </div>
+          
+        : <Link to="/movies">Choose a movie to rent</Link>
+      }
       
       {errors.map(err => {
         return (

@@ -29,7 +29,7 @@ class RentalsController < ApplicationController
     end
 
     def rental_params
-      params.permit(:user_id, :movie_id, :store_id)
+      params.permit(:user_id, :movie_id, :store_id, :price)
     end
 
     def find_movie

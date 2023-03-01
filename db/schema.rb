@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_234335) do
     t.bigint "store_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "price"
+    t.decimal "price", precision: 5, scale: 2
     t.index ["movie_id"], name: "index_rentals_on_movie_id"
     t.index ["store_id"], name: "index_rentals_on_store_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"
