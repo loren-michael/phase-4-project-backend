@@ -16,14 +16,15 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
 
   useEffect(() => {
     fetchActiveRentals()
-    setRental({movie_id: rentalMovie.id, title: rentalMovie.title, store_id: rentalMovie.store_id})
+    setRental({movie_id: rentalMovie.id, title: rentalMovie.title, store_id: rentalMovie.store_id, price: 0})
   }, [])
 
   useEffect(() => {
     const buildRental = {
       movie_id: rentalMovie.id,
       title: rentalMovie.title,
-      store_id: rentalMovie.store_id
+      store_id: rentalMovie.store_id,
+      price: 0
     };
     setRental(buildRental);
   }, [rentalMovie])
@@ -128,6 +129,7 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
     setRentalMovie({})
   }
 
+  console.log(activeRentals)
 
   return (
     <div>

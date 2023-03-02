@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_28_234335) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_173405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,12 +29,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_234335) do
   end
 
   create_table "rentals", force: :cascade do |t|
+    t.money "price", scale: 2
     t.bigint "user_id", null: false
     t.bigint "movie_id", null: false
     t.bigint "store_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "price", precision: 5, scale: 2
     t.index ["movie_id"], name: "index_rentals_on_movie_id"
     t.index ["store_id"], name: "index_rentals_on_store_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"

@@ -7,19 +7,19 @@ class RentalsController < ApplicationController
 
   def show
     find_rental
-    render json: @rental, only: :id, include: [:user, :movie, :store]
+    render json: @rental, only: :id, include: [:user, :movie, :store, :price, :price_to_currency]
   end
 
   def create
     find_movie
-    rental = @current_user.rentals.create!(user_id: @current_user.id, movie_id: @movie.id, store_id: @movie.store_id)
+    rental = @current_user.rentals.create!(user_id: @current_user.id, movie_id: @movie.id, store_id: @movie.store_id, price: params[:price])
     render json: rental, status: :created
   end
 
   def destroy
     find_rental
     @rental.destroy
-    render json: @current_user.rentals.all, include: [:movie, :store]
+    head :no_content
   end
 
   private
