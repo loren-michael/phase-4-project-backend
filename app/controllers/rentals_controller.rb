@@ -7,7 +7,7 @@ class RentalsController < ApplicationController
 
   def show
     find_rental
-    render json: @rental, only: :id, include: [:user, :movie, :store, :price, :price_to_currency]
+    render json: @rental, only: :id, include: [:user, :movie, :store, :days]
   end
 
   def create
@@ -29,7 +29,7 @@ class RentalsController < ApplicationController
     end
 
     def rental_params
-      params.permit(:user_id, :movie_id, :store_id, :price)
+      params.permit(:user_id, :movie_id, :store_id, :days)
     end
 
     def find_movie

@@ -11,12 +11,12 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
     movie_id: rentalMovie.id,
     title: rentalMovie.id,
     store_id: rentalMovie.store_id,
-    price: 0
+    days: 1
   })
 
   useEffect(() => {
     fetchActiveRentals()
-    setRental({movie_id: rentalMovie.id, title: rentalMovie.title, store_id: rentalMovie.store_id, price: 0})
+    setRental({movie_id: rentalMovie.id, title: rentalMovie.title, store_id: rentalMovie.store_id, days: 1})
   }, [])
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
       movie_id: rentalMovie.id,
       title: rentalMovie.title,
       store_id: rentalMovie.store_id,
-      price: 0
+      days: 1
     };
     setRental(buildRental);
   }, [rentalMovie])
@@ -129,7 +129,6 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
     setRentalMovie({})
   }
 
-  console.log(activeRentals)
 
   return (
     <div>
@@ -139,7 +138,7 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
       <ul>
         {activeRentals.map(rental => {
           return (
-            <li key={rental.movie.id} value={rental.id}> {rental.movie.title} rented for {rental.price} <button value={rental.id} id={rental.id} onClick={e => handleReturn(e)}>Return this movie</button></li>
+            <li key={rental.movie.id} value={rental.id}> {rental.movie.title} rented for {rental.days} days. <button value={rental.id} id={rental.id} onClick={e => handleReturn(e)}>Return this movie</button></li>
           )
         })}
       </ul>
@@ -149,11 +148,11 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
         <div>
           <form>
             <h4>Begin rental of {rentalMovie.title}</h4>
-            <label>Price:  $</label>
+            <label>Number of days:  $</label>
             <input 
               type="text" 
-              value={rental.price}
-              onChange={e => setRental({...rental, price: e.target.value})}
+              value={rental.days}
+              onChange={e => setRental({...rental, days: e.target.value})}
             />
             <button type="submit" value={rentalMovie.movie_id} onClick={e => handleRentalStart(e)} >Activate Rental</button>
           </form>

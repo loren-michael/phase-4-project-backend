@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_13_173405) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.money "price", scale: 2
+    t.integer "days"
     t.bigint "user_id", null: false
     t.bigint "movie_id", null: false
     t.bigint "store_id", null: false
