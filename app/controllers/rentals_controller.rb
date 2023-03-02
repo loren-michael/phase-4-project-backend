@@ -12,7 +12,7 @@ class RentalsController < ApplicationController
 
   def create
     find_movie
-    rental = @current_user.rentals.create!(user_id: @current_user.id, movie_id: @movie.id, store_id: @movie.store_id, price: params[:price])
+    rental = @current_user.rentals.create!(user_id: @current_user.id, movie_id: @movie.id, store_id: @movie.store_id, days: params[:days])
     render json: rental, status: :created
   end
 

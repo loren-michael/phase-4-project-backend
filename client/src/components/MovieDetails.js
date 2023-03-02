@@ -10,8 +10,6 @@ function MovieDetails({ setRentalMovie, user }) {
 
   const [movies, setMovies] = useContext(MoviesContext);
 
-  console.log(user)
-
 
   useEffect(()=>{
     const movieId = parseInt(params.id);

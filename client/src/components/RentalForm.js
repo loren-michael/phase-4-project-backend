@@ -123,12 +123,11 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
       }
     })
     setMovies(newRentalMovies)
-    const newActiveRentalMovie = {movie: rentalMovie}
-    const updatedActiveRentals = [...activeRentals, newActiveRentalMovie]
+    const newActiveRental = {movie: rentalMovie, days: parseInt(rental.days)}
+    const updatedActiveRentals = [...activeRentals, newActiveRental]
     setActiveRentals(updatedActiveRentals)
     setRentalMovie({})
   }
-
 
   return (
     <div>
@@ -148,11 +147,11 @@ function RentalForm({ activeRentals, setActiveRentals, rentalMovie, setRentalMov
         <div>
           <form>
             <h4>Begin rental of {rentalMovie.title}</h4>
-            <label>Number of days:  $</label>
+            <label>Number of days: </label>
             <input 
               type="text" 
               value={rental.days}
-              onChange={e => setRental({...rental, days: e.target.value})}
+              onChange={e => setRental({...rental, days: parseInt(e.target.value)})}
             />
             <button type="submit" value={rentalMovie.movie_id} onClick={e => handleRentalStart(e)} >Activate Rental</button>
           </form>
