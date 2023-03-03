@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
-  get '/most_rentals', to: "users#most_rentals"
 
   resources :rentals
   resources :users

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { StoresContext } from '../context/stores';
 
-function StoresContainer({ store, setStore }) {
+function StoresContainer() {
   const [stores, setStores] = useContext(StoresContext);
   const [newStore, setNewStore] = useState({address: ""});
   const [errors, setErrors] = useState([])
@@ -32,7 +32,6 @@ function StoresContainer({ store, setStore }) {
     })
   }
 
-console.log(stores)
 
   return (
     
@@ -42,7 +41,6 @@ console.log(stores)
       {stores.map(store => {
         return (
           <li key={store.address}>
-            {/* <a href={`/stores/${store.id}`} value={store.id}>Store # {store.id} - {store.address}</a> */}
             <Link to={`/stores/${store.id}`} value={store.id}>Store # {store.id} - {store.address}</Link>
           </li>
         )
